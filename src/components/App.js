@@ -13,7 +13,8 @@ const App = () => {
   const [currentPlan, setCurrentPlan] = useState();
 
   const changeHandler = (e) => {
-
+  const selectedPlanKey = parseInt(e.target.value);
+    setCurrentPlan(options[selectedPlanKey]);
   };
 
   return (
@@ -21,7 +22,7 @@ const App = () => {
       <div className="container">
         <div>
           <img
-            src={picture}
+   src={picture}
             alt="man-with-headphones"
             className="top-pic"
           ></img>
@@ -38,7 +39,7 @@ const App = () => {
             <div className="music-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">
                 <g fill="none" fillRule="evenodd">
-                  <circle cx="24" cy="24" r="24" fill="#DFE6FB" />
+  <circle cx="24" cy="24" r="24" fill="#DFE6FB" />
                   <path
                     fill="#717FA6"
                     fillRule="nonzero"
@@ -48,16 +49,16 @@ const App = () => {
               </svg>
             </div>
             <div className="plan">
-              <h4 id="plan-title"></h4>
-              <p id="plan-price"></p>
+              <h4 id="plan-title">{currentPlan ? currentPlan.plan : "Select a plan"}</h4>
+              <p id="plan-price">{currentPlan ? currentPlan.price : ""}</p>
             </div>
             <select onChange={changeHandler} className="select" id="select">
               <option disabled selected>
                 Change
               </option>
-              {options.map((option) => (
+{options.map((option) => (
                 <option key={option.key} value={option.key}>
-                 
+                  {option.plan}
                 </option>
               ))}
             </select>
@@ -74,4 +75,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App;
